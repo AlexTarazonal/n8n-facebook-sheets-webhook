@@ -1,0 +1,359 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1JddeaB6R6OpqyYpgjPKMHWUO7iS22Q2eP3ieJhWBA0Y",
+          "mode": "list",
+          "cachedResultName": "Leads - Test Ecommerce Ideal",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JddeaB6R6OpqyYpgjPKMHWUO7iS22Q2eP3ieJhWBA0Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Respuestas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JddeaB6R6OpqyYpgjPKMHWUO7iS22Q2eP3ieJhWBA0Y/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{ String((($json.body ?? $json).timestamp ?? $now.toISO())).replace(/\\s+/g,\" \").trim() }}\n",
+            "sessionId": "={{ String((($json.body ?? $json).sessionId ?? \"\")).replace(/\\s+/g,\" \").trim() }}\n",
+            "role": "={{ String((($json.body ?? $json).answers?.role ?? \"\")).replace(/\\s+/g,\" \").trim() }}\n",
+            "challengePriorities": "={{ ((($json.body ?? $json).answers?.step2_priorities ?? []).map(p => `${p.rank}. ${p.label}`).join(\" | \")).trim() }}\n",
+            "digitalization": "={{ String((($json.body ?? $json).answers?.digitalization?.label ?? \"\")).replace(/\\s+/g,\" \").trim() }}\n",
+            "systems": "={{ JSON.stringify((($json.body ?? $json).answers?.systems ?? {})) }}\n",
+            "horizon": "={{ String((($json.body ?? $json).answers?.timeline ?? \"\")).replace(/\\s+/g,\" \").trim() }}\n",
+            "expectedResults": "={{ ((($json.body ?? $json).answers?.expectedResults ?? []).map(r => `${r.rank}. ${r.label}${r.detail ? ` (${r.detail})` : \"\"}`).join(\" | \")).trim() }}\n",
+            "budget": "={{ String((($json.body ?? $json).answers?.budget ?? \"\")).replace(/\\s+/g,\" \").trim() }}\n",
+            "diagnosisCategory": "={{ String((($json.body ?? $json).recommendation?.category ?? \"\")).replace(/\\s+/g,\" \").trim() }}\n",
+            "diagnosisCTA": "={{ String((($json.body ?? $json).recommendation?.ctaLabel ?? \"\")).replace(/\\s+/g,\" \").trim() }}\n",
+            "notes": "={{ String((($json.body ?? $json).recommendation?.benefit ?? \"\")).replace(/\\s+/g,\" \").trim() }}\n"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "sessionId",
+              "displayName": "sessionId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "role",
+              "displayName": "role",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "challengePriorities",
+              "displayName": "challengePriorities",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "digitalization",
+              "displayName": "digitalization",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "systems",
+              "displayName": "systems",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "horizon",
+              "displayName": "horizon",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "expectedResults",
+              "displayName": "expectedResults",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "budget",
+              "displayName": "budget",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "diagnosisCategory",
+              "displayName": "diagnosisCategory",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "diagnosisCTA",
+              "displayName": "diagnosisCTA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "notes",
+              "displayName": "notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        192,
+        -144
+      ],
+      "id": "dd64e29e-8367-42e1-a08b-b8e831eb5666",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "eIku8fVHITWspivb",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"ok\": true }\n",
+        "options": {
+          "responseCode": "={{ 200 }}",
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              },
+              {
+                "name": "Access-Control-Allow-Methods",
+                "value": "POST, OPTIONS"
+              },
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "Content-Type"
+              },
+              {
+                "name": "Access-Control-Max-Age",
+                "value": "86400"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        848,
+        -144
+      ],
+      "id": "dee4f924-aa4e-40ef-aa59-a9acfc88ddb2",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ecommerce-ideal",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*",
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              },
+              {
+                "name": "Access-Control-Allow-Methods",
+                "value": "=POST, OPTIONS"
+              },
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "Content-Type"
+              },
+              {
+                "name": "Access-Control-Max-Age",
+                "value": "86400"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -16,
+        -144
+      ],
+      "id": "2446a48c-1270-41ea-a3a3-b00129884894",
+      "name": "Webhook1",
+      "webhookId": "899d1850-9e0f-4370-9a8c-b612f78bf98d"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v22.0/969862419533022/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer EAAYsYZBmlUq8BQNku9D4cxIaFOiGllIIdaSc5osHZCLaWpnn8dcrNC2zscTy7Xw8CIbz8J184ibKPpc4N3V8VXR5rYQK2diWPj56Pd9hmn8S0gqf7zaZAGDCFindSq47clpciW3P5FZBTNZBILeiuFsrQ89VOr40W8OgrUHiLfxZBIUZAJKOoZCVMuCsEFGrPgLs993hzHluCZA9IUUQsG7reY2NuGbBeid1lSxEJlgGiQ9RFl6ewBmbwUaA50gX2vMZCD9Hk6XZA9RnZAgZCsLkgzuMZAeQkj"
+            },
+            {}
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  messaging_product: \"whatsapp\",\n  to: \"51982621474\",\n  type: \"text\",\n  text: {\n    body: $json.waText,\n    preview_url: false\n  }\n}) }}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        656,
+        -144
+      ],
+      "id": "82a4cfec-65e9-41c5-ab9a-11278a39bba1",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a4816ff6-7063-4d69-8ffa-eac07319cdff",
+              "name": "=waText",
+              "value": "=={{ (function () {\n  function t(v) { return (v === null || v === undefined) ? '' : String(v).trim(); }\n\n  // timestamp bonito (Lima)\n  var ts = t($json.timestamp);\n  try {\n    ts = new Date(ts).toLocaleString('es-PE', {\n      timeZone: 'America/Lima',\n      year: 'numeric',\n      month: '2-digit',\n      day: '2-digit',\n      hour: '2-digit',\n      minute: '2-digit',\n    });\n  } catch (e) {}\n\n  // systems bonito\n  var systemsPretty = '• (Sin información)';\n  try {\n    var s = $json.systems;\n    if (typeof s === 'string') s = JSON.parse(s);\n\n    var out = [];\n    if (s && s.erp && s.erp.selected) out.push('• ERP: ' + t(s.erp.detail || 'Sí'));\n    if (s && s.crm && s.crm.selected) out.push('• CRM: ' + t(s.crm.detail || 'Sí'));\n    if (s && s.ecommerceTech && s.ecommerceTech.selected) out.push('• Ecommerce: ' + t(s.ecommerceTech.detail || 'Sí'));\n    if (s && s.otherImplementation && s.otherImplementation.selected) out.push('• Otro: ' + t(s.otherImplementation.detail || 'Sí'));\n    if (s && s.none) out.push('• Ninguno');\n\n    if (out.length) systemsPretty = out.join('\\n');\n  } catch (e) {\n    var raw = t($json.systems);\n    systemsPretty = raw ? raw : '• (Sin información)';\n  }\n\n  return (\n    '📌 Resultado del Test: Tu ecommerce ideal\\n' +\n    '🕒 ' + ts + '\\n' +\n    '🆔 Sesión: ' + t($json.sessionId) + '\\n\\n' +\n    '👤 Rol: ' + t($json.role) + '\\n' +\n    '🎯 Diagnóstico: ' + t($json.diagnosisCategory) + '\\n\\n' +\n    t($json.notes) + '\\n\\n' +\n    '📍 Prioridades (Paso 2):\\n' + t($json.challengePriorities) + '\\n\\n' +\n    '📈 Digitalización (Paso 3):\\n' + t($json.digitalization) + '\\n\\n' +\n    '🧰 Sistemas (Paso 4):\\n' + systemsPretty + '\\n\\n' +\n    '⏳ Horizonte (Paso 5): ' + t($json.horizon) + '\\n' +\n    '✅ Resultados esperados (Paso 6):\\n' + t($json.expectedResults) + '\\n\\n' +\n    '💰 Presupuesto (Paso 7): ' + t($json.budget) + '\\n\\n' +\n    '👉 ' + t($json.diagnosisCTA)\n  );\n})() }}\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        400,
+        -144
+      ],
+      "id": "cf9f52d0-3d8d-486c-b6ca-e971182bb2ab",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "35b89052-2e12-4e0c-9d49-7e4501b1f8b0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8d2845d9a1604ab480c371461bb5ac9db28a6f67587c3f1b339144c9cdf7941f"
+  },
+  "id": "Au3uUbOGIgUW4uC0",
+  "tags": []
+}
